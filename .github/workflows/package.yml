@@ -8,8 +8,10 @@ name: Package and release
 on:
   workflow_dispatch:
   push:
-    tags:
-      - '**'
+    branches:
+      - master
+    paths-ignore:
+      - '.github/**'
 
 jobs:
   release:
@@ -24,4 +26,6 @@ jobs:
 
       # once cloned, we just run the GitHub Action for the packager project
       - name: Package and release
-        uses: BigWigsMods/packager@v2
+        uses: BigWigsMods/packager@master
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
