@@ -1,0 +1,26 @@
+# description of this workflow, can be anything you want
+name: Package and release
+
+# we need to let GitHub know _when_ we want to release, typically only when we create a new tag.
+# this will target only tags, and not all pushes to the master branch.
+# this part can be heavily customized to your liking, like targeting only tags that match a certain word,
+# other branches or even pullrequests.
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+
+      # we first have to clone the AddOn project, this is a required step
+      - name: Clone project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # gets git history for changelogs
+
+      # once cloned, we just run the GitHub Action for the packager project
+      - name: Package and release
+        uses: BigWigsMods/packager@v2
