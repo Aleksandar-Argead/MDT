@@ -25,5 +25,6 @@ jobs:
           git remote add upstream https://github.com/Nnoggie/MythicDungeonTools
           git fetch upstream
           git rebase upstream/master
+          git pull
           git push
           git push --tags
