@@ -7,8 +7,10 @@ name: Package and release
 # other branches or even pullrequests.
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches:
+      - master
       - main
     paths-ignore:
       - '.github/**'
